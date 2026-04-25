@@ -23,24 +23,24 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-   ui[0]: "a[0] - LSB of operand A"
+  ui[0]: "a[0]"
   ui[1]: "a[1]"
   ui[2]: "a[2]"
-  ui[3]: "a[3] - MSB of operand A"
-  ui[4]: "b[0] - LSB of operand B"
+  ui[3]: "a[3]"
+  ui[4]: "b[0]"
   ui[5]: "b[1]"
   ui[6]: "b[2]"
-  ui[7]: "b[3] - MSB of operand B"
+  ui[7]: "b[3]"
 
   # Outputs
-  uo[0]: "acc[0] - LSB of accumulated result"
+  uo[0]: "acc[0]"
   uo[1]: "acc[1]"
   uo[2]: "acc[2]"
   uo[3]: "acc[3]"
   uo[4]: "acc[4]"
   uo[5]: "acc[5]"
   uo[6]: "acc[6]"
-  uo[7]: "acc[7] - MSB of accumulated result"
+  uo[7]: "acc[7]"
 
 
   # Bidirectional pins
