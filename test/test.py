@@ -1,6 +1,6 @@
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import ClockCycles
+from cocotb.triggers import ClockCycles, RisingEdge
 
 
 @cocotb.test()
@@ -12,12 +12,12 @@ async def test_project(dut):
     dut.ui_in.value = 0
     dut.uio_in.value = 0
 
-    # Reset
+    # RESET (extra safe)
     dut.rst_n.value = 0
     await ClockCycles(dut.clk, 3)
+    await RisingEdge(dut.clk)
     dut.rst_n.value = 1
 
-    # IMPORTANT: wait extra cycle after reset
     await ClockCycles(dut.clk, 2)
 
     def apply(a, b):
@@ -26,14 +26,17 @@ async def test_project(dut):
     # Cycle 1
     apply(2, 3)
     await ClockCycles(dut.clk, 2)
+    await RisingEdge(dut.clk)
     assert int(dut.uo_out.value) == 6
 
     # Cycle 2
     apply(1, 4)
     await ClockCycles(dut.clk, 2)
+    await RisingEdge(dut.clk)
     assert int(dut.uo_out.value) == 10
 
     # Cycle 3
     apply(2, 2)
     await ClockCycles(dut.clk, 2)
+    await RisingEdge(dut.clk)
     assert int(dut.uo_out.value) == 14
